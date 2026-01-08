@@ -22,7 +22,11 @@ git clone https://github.com/SyuLin1167/3DGameSample.git
 ### 3. Visual Studioで開く
 1. `ProjectName/3DGameSample.sln`をVisual Studioで開く
 2. プラットフォームを`x64`に設定
-3. ビルドして実行
+3. ビルド構成を`Debug`または`Release`に設定
+4. プロジェクトプロパティで以下を確認：
+   - C/C++ → 言語 → C++言語標準: ISO C++20
+   - C/C++ → 全般 → C++モジュールを有効にする: はい
+5. ビルドして実行（初回ビルドはヘッダーユニットのコンパイルで時間がかかります）
 
 ## 🎮 操作方法
 
