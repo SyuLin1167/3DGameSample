@@ -1,7 +1,7 @@
 module Object.ObjectManager;
 
 import <memory>;
-import <algorithm>;
+#include "algorithm";
 
 import Object.Player;
 import Object.Map;
