@@ -47,6 +47,6 @@ export namespace object
 
     private:
         static constexpr float MOVE_SPEED = 0.1f;  // 移動速度
-        VECTOR m_velocity;                         // 速度
+        DxLib::VECTOR m_velocity;                         // 速度
     };
 }

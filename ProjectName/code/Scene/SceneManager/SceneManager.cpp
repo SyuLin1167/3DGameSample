@@ -1,8 +1,8 @@
+module;
+#include <DxLib.h>
+
 module Scene.SceneManager;
-
 import <memory>;
-import <DxLib.h>;
-
 import Scene.Title;
 import Scene.Play;
 import Scene.Result;

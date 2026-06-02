@@ -1,8 +1,8 @@
+module;
+#include <DxLib.h>
+
 module GameSystem.Execution;
-
 import <memory>;
-import <DxLib.h>;
-
 import GameSystem.Library;
 import Scene.SceneManager;
 

@@ -1,6 +1,8 @@
-module Scene.Title;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module Scene.Title;
+import MyLib.KeyStatus;
 
 namespace scene
 {
@@ -25,7 +27,7 @@ namespace scene
     void Title::Update()
     {
         // スペースキーが押されたらプレイシーンへ
-        if (CheckHitKey(KEY_INPUT_SPACE))
+        if (input::KeyStatus::CheckKey(keyType.SPACE, ON_PRESS))
         {
             m_nextScene = SceneType::Play;
         }

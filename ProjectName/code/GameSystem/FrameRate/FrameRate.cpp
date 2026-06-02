@@ -1,6 +1,7 @@
-module GameSystem.FrameRate;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module GameSystem.FrameRate;
 
 namespace gameSystem
 {

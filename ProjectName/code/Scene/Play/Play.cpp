@@ -1,8 +1,8 @@
+module;
+#include <DxLib.h>
+
 module Scene.Play;
-
 import <memory>;
-import <DxLib.h>;
-
 import Object.ObjectManager;
 import GameSystem.Camera;
 

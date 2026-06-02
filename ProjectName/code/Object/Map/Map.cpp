@@ -1,6 +1,7 @@
-module Object.Map;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module Object.Map;
 
 namespace object
 {

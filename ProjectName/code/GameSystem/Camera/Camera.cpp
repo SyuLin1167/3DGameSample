@@ -1,6 +1,7 @@
-module GameSystem.Camera;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module GameSystem.Camera;
 
 namespace gameSystem
 {

@@ -1,6 +1,7 @@
-module GameSystem.Library;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module GameSystem.Library;
 
 namespace gameSystem
 {

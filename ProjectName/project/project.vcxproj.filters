@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\code\main.cpp" />
+    <ClCompile Include="..\code\GameSystem\Execution\Execution.cpp" />
+    <ClCompile Include="..\code\GameSystem\Execution\Execution.ixx" />
+    <ClCompile Include="..\code\GameSystem\Library\Library.cpp" />
+    <ClCompile Include="..\code\GameSystem\Library\Library.ixx" />
+    <ClCompile Include="..\code\GameSystem\FrameRate\FrameRate.cpp" />
+    <ClCompile Include="..\code\GameSystem\FrameRate\FrameRate.ixx" />
+    <ClCompile Include="..\code\GameSystem\Camera\Camera.cpp" />
+    <ClCompile Include="..\code\GameSystem\Camera\Camera.ixx" />
+    <ClCompile Include="..\code\Scene\SceneBase\SceneBase.ixx" />
+    <ClCompile Include="..\code\Scene\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="..\code\Scene\SceneManager\SceneManager.ixx" />
+    <ClCompile Include="..\code\Scene\Title\Title.cpp" />
+    <ClCompile Include="..\code\Scene\Title\Title.ixx" />
+    <ClCompile Include="..\code\Scene\Play\Play.cpp" />
+    <ClCompile Include="..\code\Scene\Play\Play.ixx" />
+    <ClCompile Include="..\code\Scene\Result\Result.cpp" />
+    <ClCompile Include="..\code\Scene\Result\Result.ixx" />
+    <ClCompile Include="..\code\Object\GameObject\GameObject.cpp" />
+    <ClCompile Include="..\code\Object\GameObject\GameObject.ixx" />
+    <ClCompile Include="..\code\Object\ObjectManager\ObjectManager.cpp" />
+    <ClCompile Include="..\code\Object\ObjectManager\ObjectManager.ixx" />
+    <ClCompile Include="..\code\Object\Character\Player\Player.cpp" />
+    <ClCompile Include="..\code\Object\Character\Player\Player.ixx" />
+    <ClCompile Include="..\code\Object\Map\Map.cpp" />
+    <ClCompile Include="..\code\Object\Map\Map.ixx" />
+    <ClCompile Include="..\code\MyLib\FileSystem\FileIO\CsvIO.ixx">
+      <Filter>MyLib\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\FileSystem\FileIO\JsonIO.ixx">
+      <Filter>MyLib\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\FileSystem\FileIO\MemMapFile.cpp">
+      <Filter>MyLib\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\FileSystem\FileIO\MemMapFile.ixx">
+      <Filter>MyLib\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\FileSystem\FileSystem.ixx">
+      <Filter>MyLib\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Loading\Loading.cpp">
+      <Filter>MyLib\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Loading\Loading.ixx">
+      <Filter>MyLib\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Loading\LoadingContext.ixx">
+      <Filter>MyLib\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Math\PropVector2.ixx">
+      <Filter>MyLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Math\Vector2.ixx">
+      <Filter>MyLib\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Shape\Circle.ixx">
+      <Filter>MyLib\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Shape\Rect.ixx">
+      <Filter>MyLib\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Input\ClickStatus.cpp">
+      <Filter>MyLib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Input\ClickStatus.ixx">
+      <Filter>MyLib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Input\KeyStatus.cpp">
+      <Filter>MyLib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Input\KeyStatus.ixx">
+      <Filter>MyLib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Input\KeyTag.ixx">
+      <Filter>MyLib\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\Coroutine.ixx">
+      <Filter>MyLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\MyLib\TileChunkUtil.ixx">
+      <Filter>MyLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="MyLib">
+      <UniqueIdentifier>{1e18330c-3a13-461b-bbb2-5b43381f3b24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyLib\Input">
+      <UniqueIdentifier>{adacd155-da8a-4420-b921-229e1c2ae327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyLib\FileSystem">
+      <UniqueIdentifier>{2b4ed79b-0779-4f89-990a-bb7aff0062c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyLib\Loading">
+      <UniqueIdentifier>{00f2cacd-6f4b-4d75-8689-fb1f31cb01e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyLib\Math">
+      <UniqueIdentifier>{f06fe9b2-212d-4356-bccf-6a27f7a69238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyLib\Shape">
+      <UniqueIdentifier>{e8f75fee-fe96-4da6-91a1-7a3ee485fb9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

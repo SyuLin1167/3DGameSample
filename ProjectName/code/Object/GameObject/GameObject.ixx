@@ -1,6 +1,8 @@
+module;
+#include <DxLib.h>
+
 export module Object.GameObject;
 
-import <DxLib.h>;
 import <string>;
 
 /// <summary>

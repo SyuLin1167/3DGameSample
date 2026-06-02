@@ -1,6 +1,7 @@
-module Scene.Result;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module Scene.Result;
 
 namespace scene
 {
