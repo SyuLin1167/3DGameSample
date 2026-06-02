@@ -2,6 +2,7 @@ export module Scene.SceneManager;
 
 import <memory>;
 import <unordered_map>;
+import <stack>;
 
 export import Scene.SceneBase;
 
@@ -47,15 +48,8 @@ export namespace scene
         /// </summary>
         void ChangeScene();
 
-        /// <summary>
-        /// シーンを作成する
-        /// </summary>
-        /// <param name="type">シーンの種類</param>
-        /// <returns>作成したシーン</returns>
-        std::unique_ptr<SceneBase> CreateScene(SceneType type);
-
     private:
-        std::unique_ptr<SceneBase> m_currentScene;  // 現在のシーン
-        SceneType m_nextSceneType;                  // 次のシーンの種類
+        std::stack<std::shared_ptr<SceneBase>> m_currentScene;  // 現在のシーン
+        SceneCmd m_pendingCmd;                      //次フレームに適用するコマンド
     };
 }

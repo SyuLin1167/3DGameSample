@@ -1,6 +1,7 @@
-module Object.GameObject;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+module Object.GameObject;
 
 namespace object
 {

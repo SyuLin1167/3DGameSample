@@ -1,6 +1,7 @@
-export module GameSystem.Camera;
+module;
+#include <DxLib.h>
 
-import <DxLib.h>;
+export module GameSystem.Camera;
 
 /// <summary>
 /// システム関連

@@ -1,8 +1,9 @@
+module;
+#include <DxLib.h>
+#include <algorithm>
+
 module Object.ObjectManager;
-
 import <memory>;
-#include "algorithm";
-
 import Object.Player;
 import Object.Map;
 

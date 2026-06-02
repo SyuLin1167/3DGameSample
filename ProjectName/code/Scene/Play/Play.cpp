@@ -1,8 +1,9 @@
+module;
+#include <DxLib.h>
+
 module Scene.Play;
-
 import <memory>;
-import <DxLib.h>;
-
+import Scene.Result;
 import Object.ObjectManager;
 import GameSystem.Camera;
 
@@ -12,8 +13,7 @@ namespace scene
     /// コンストラクタ
     /// </summary>
     Play::Play()
-        : m_nextScene(SceneType::None)
-        , m_objectManager(std::make_unique<object::ObjectManager>())
+        : m_objectManager(std::make_unique<object::ObjectManager>())
         , m_camera(std::make_unique<gameSystem::Camera>())
     {
     }
@@ -37,12 +37,12 @@ namespace scene
     /// <summary>
     /// 更新処理
     /// </summary>
-    void Play::Update()
+    SceneCmd Play::Update()
     {
         // Rキーが押されたらリザルトシーンへ
         if (CheckHitKey(KEY_INPUT_R))
         {
-            m_nextScene = SceneType::Result;
+            return CmdReplace{ [] { return std::make_shared<Result>(); } };
         }
 
         // オブジェクトの更新
@@ -50,6 +50,8 @@ namespace scene
 
         // カメラの更新
         m_camera->Update();
+
+        return std::monostate{};
     }
 
     /// <summary>

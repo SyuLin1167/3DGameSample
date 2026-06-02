@@ -44,7 +44,7 @@ export namespace scene
         /// <summary>
         /// 更新処理
         /// </summary>
-        void Update() override;
+        SceneCmd Update() override;
 
         /// <summary>
         /// 描画処理
@@ -56,11 +56,6 @@ export namespace scene
         /// </summary>
         void Finalize() override;
 
-        /// <summary>
-        /// 次のシーンを取得
-        /// </summary>
-        /// <returns>次のシーン</returns>
-        SceneType GetNextScene() const override { return m_nextScene; }
 
         /// <summary>
         /// シーン名を取得
@@ -69,7 +64,6 @@ export namespace scene
         std::string GetSceneName() const override { return "Play"; }
 
     private:
-        SceneType m_nextScene;                              // 次のシーン
         std::unique_ptr<object::ObjectManager> m_objectManager;  // オブジェクト管理
         std::unique_ptr<gameSystem::Camera> m_camera;       // カメラ
     };
