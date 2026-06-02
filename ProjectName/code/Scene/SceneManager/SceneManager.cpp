@@ -3,9 +3,9 @@ module;
 
 module Scene.SceneManager;
 import <memory>;
+import <variant>;
+import MyLib.KeyStatus;
 import Scene.Title;
-import Scene.Play;
-import Scene.Result;
 import GameSystem.FrameRate;
 
 namespace scene
@@ -14,11 +14,10 @@ namespace scene
     /// コンストラクタ
     /// </summary>
     SceneManager::SceneManager()
-        : m_currentScene(nullptr)
-        , m_nextSceneType(SceneType::Title)
+        : m_pendingCmd(std::monostate{})
     {
-        // 最初のシーンを作成
-        ChangeScene();
+        //最初のシーンをタイトルに設定
+        m_currentScene.emplace(std::make_shared<Title>());
     }
 
     /// <summary>
@@ -26,32 +25,27 @@ namespace scene
     /// </summary>
     void SceneManager::GameLoop()
     {
-        gameSystem::FrameRate frameRate;
-
         while (ProcessMessage() == 0)
         {
-            frameRate.Update();
-
             // ESCキーが押されたら終了
             if (CheckHitKey(KEY_INPUT_ESCAPE))
             {
                 break;
             }
 
+            gameSystem::FrameRate::Update();
+
             // 更新処理
             Update();
-
-            // 画面クリア
-            ClearDrawScreen();
 
             // 描画処理
             Draw();
 
-            // 画面反映
-            ScreenFlip();
-
             // フレームレート制御
-            frameRate.Wait();
+            gameSystem::FrameRate::Wait();
+
+            // シーンの切り替え
+            ChangeScene();
         }
     }
 
@@ -60,18 +54,8 @@ namespace scene
     /// </summary>
     void SceneManager::Update()
     {
-        if (m_currentScene)
-        {
-            m_currentScene->Update();
-
-            // 次のシーンがあれば切り替える
-            SceneType nextType = m_currentScene->GetNextScene();
-            if (nextType != SceneType::None)
-            {
-                m_nextSceneType = nextType;
-                ChangeScene();
-            }
-        }
+        input::KeyStatus::UpdateKeyState();
+        m_pendingCmd = m_currentScene.top()->Update();
     }
 
     /// <summary>
@@ -79,10 +63,9 @@ namespace scene
     /// </summary>
     void SceneManager::Draw()
     {
-        if (m_currentScene)
-        {
-            m_currentScene->Draw();
-        }
+        ClearDrawScreen();
+        m_currentScene.top()->Draw();
+        ScreenFlip();
     }
 
     /// <summary>
@@ -90,42 +73,56 @@ namespace scene
     /// </summary>
     void SceneManager::ChangeScene()
     {
-        // 現在のシーンの終了処理
-        if (m_currentScene)
-        {
-            m_currentScene->Finalize();
-        }
+        // フレーム終端でコマンド適用
+        std::visit(
+            [this](auto&& cmd)
+            {
+                using T = std::decay_t<decltype(cmd)>;
+                if constexpr (std::is_same_v<T, std::monostate>)
+                {
+                    // 何もしない
+                }
+                else if constexpr (std::is_same_v<T, CmdPush>)
+                {
+                    // 新しいシーンを積む
+                    auto next = cmd.build ? cmd.build() : nullptr;
+                    if (next)
+                    {
+                        m_currentScene.push(next);
+                        m_currentScene.top()->Initialize();
+                    }
+                }
+                else if constexpr (std::is_same_v<T, CmdReplace>)
+                {
+                    // 現在のシーンを置き換える
+                    auto next = cmd.build ? cmd.build() : nullptr;
+                    if (next)
+                    {
+                        if (!m_currentScene.empty())
+                        {
+                            m_currentScene.pop();
+                        }
+                        m_currentScene.push(next);
+                        m_currentScene.top()->Initialize();
+                    }
+                }
+                else if constexpr (std::is_same_v<T, CmdPop>)
+                {
+                    // 現在のシーンを取り除く
+                    if (!m_currentScene.empty())
+                    {
+                        m_currentScene.pop();
+                    }
+                }
+                else if constexpr (std::is_same_v<T, CmdQuit>)
+                {
+                    // ゲーム終了
+                    PostQuitMessage(0);
+                }
+            },
+            m_pendingCmd);
 
-        // 次のシーンを作成
-        m_currentScene = CreateScene(m_nextSceneType);
-
-        // 新しいシーンの初期化
-        if (m_currentScene)
-        {
-            m_currentScene->Initialize();
-        }
-
-        // 次のシーンタイプをリセット
-        m_nextSceneType = SceneType::None;
-    }
-
-    /// <summary>
-    /// シーンを作成する
-    /// </summary>
-    /// <param name="type">シーンの種類</param>
-    /// <returns>作成したシーン</returns>
-    std::unique_ptr<SceneBase> SceneManager::CreateScene(SceneType type)
-    {
-        switch (type)
-        {
-        case SceneType::Title:
-            return std::make_unique<Title>();
-        case SceneType::Play:
-            return std::make_unique<Play>();
-        case SceneType::Result:
-            return std::make_unique<Result>();
-        default:
-            return nullptr;
-        }
+        // コマンドをクリア
+        m_pendingCmd = std::monostate{};
     }
 }

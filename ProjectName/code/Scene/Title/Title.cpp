@@ -3,6 +3,7 @@ module;
 
 module Scene.Title;
 import MyLib.KeyStatus;
+import Scene.Play;
 
 namespace scene
 {
@@ -10,7 +11,6 @@ namespace scene
     /// コンストラクタ
     /// </summary>
     Title::Title()
-        : m_nextScene(SceneType::None)
     {
     }
 
@@ -24,13 +24,15 @@ namespace scene
     /// <summary>
     /// 更新処理
     /// </summary>
-    void Title::Update()
+    SceneCmd Title::Update()
     {
         // スペースキーが押されたらプレイシーンへ
         if (input::KeyStatus::CheckKey(keyType.SPACE, ON_PRESS))
         {
-            m_nextScene = SceneType::Play;
+            return CmdReplace{ [] { return std::make_shared<Play>(); } };
         }
+
+        return std::monostate{};
     }
 
     /// <summary>

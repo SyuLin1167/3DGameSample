@@ -19,7 +19,7 @@ namespace gameSystem
     /// </summary>
     void FrameRate::Update()
     {
-        m_startTime = GetNowCount();
+        Instance().m_startTime = GetNowCount();
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ namespace gameSystem
     /// </summary>
     void FrameRate::Wait()
     {
-        int elapsedTime = GetNowCount() - m_startTime;
+        int elapsedTime = GetNowCount() - Instance().m_startTime;
         int waitTime = static_cast<int>(FRAME_TIME) - elapsedTime;
 
         if (waitTime > 0)
@@ -36,7 +36,7 @@ namespace gameSystem
         }
 
         // デルタタイムを計算(秒単位)
-        int totalTime = GetNowCount() - m_startTime;
-        m_deltaTime = totalTime / 1000.0f;
+        int totalTime = GetNowCount() - Instance().m_startTime;
+        Instance().m_deltaTime = totalTime / 1000.0f;
     }
 }

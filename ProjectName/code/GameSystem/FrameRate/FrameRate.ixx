@@ -12,9 +12,16 @@ export namespace gameSystem
     {
     public:
         /// <summary>
-        /// コンストラクタ
+        /// コピー禁止令
         /// </summary>
-        FrameRate();
+        FrameRate(const FrameRate&) = delete;
+        FrameRate(FrameRate&&) = delete;
+
+        /// <summary>
+        /// 代入禁止令
+        /// </summary>
+        FrameRate& operator=(const FrameRate&) = delete;
+        FrameRate& operator=(FrameRate&&) = delete;
 
         /// <summary>
         /// デストラクタ
@@ -24,20 +31,35 @@ export namespace gameSystem
         /// <summary>
         /// 更新処理
         /// </summary>
-        void Update();
+        static void Update();
 
         /// <summary>
         /// 待機処理
         /// </summary>
-        void Wait();
+        static void Wait();
 
         /// <summary>
         /// デルタタイムを取得
         /// </summary>
         /// <returns>デルタタイム(秒)</returns>
-        float GetDeltaTime() const { return m_deltaTime; }
+        static float GetDeltaTime() { return Instance().m_deltaTime; }
 
     private:
+        /// <summary>
+        /// 自身のインスタンスを返す
+        /// </summary>
+        /// <returns>自身のインスタンス</returns>
+        static FrameRate& Instance()
+        {
+            static FrameRate instance;
+            return instance;
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        FrameRate();
+
         static constexpr int TARGET_FPS = 60;           // 目標FPS
         static constexpr float FRAME_TIME = 1000.0f / TARGET_FPS;  // 1フレームの時間(ミリ秒)
 

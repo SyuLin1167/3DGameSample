@@ -4,7 +4,7 @@ module;
 
 export module MyLib.File.JsonIO;
 
-export import <json.hpp>;
+import <nlohmann/json.hpp>;
 import <memory>;
 
 import MyLib.Loading.LoadingContext;

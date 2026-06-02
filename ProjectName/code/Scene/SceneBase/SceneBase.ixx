@@ -1,22 +1,24 @@
 export module Scene.SceneBase;
-
-import <string>;
+export import <string>;
+export import <memory>;
+export import <functional>;
+export import <variant>;
+export import Object.ObjectManager;
 
 /// <summary>
 /// シーン関連
 /// </summary>
 export namespace scene
 {
-    /// <summary>
-    /// シーンの種類
-    /// </summary>
-    export enum class SceneType
-    {
-        None,       // なし
-        Title,      // タイトル
-        Play,       // プレイ
-        Result,     // リザルト
-    };
+    export class SceneBase;   // 前方宣言
+    export using SceneBuilder = std::function<std::shared_ptr<SceneBase>()>;    // シーン構築関数
+
+    export struct CmdPush { SceneBuilder build; };      // シーンを積む
+    export struct CmdReplace { SceneBuilder build; };   // シーンを置き換える
+    export struct CmdPop {};                            // シーンを削除する
+    export struct CmdQuit {};                           // 終了要求
+
+    export using SceneCmd = std::variant<std::monostate, CmdPush, CmdReplace, CmdPop, CmdQuit>; // シーンコマンド
 
     /// <summary>
     /// シーンの基底クラス
@@ -42,7 +44,7 @@ export namespace scene
         /// <summary>
         /// 更新処理
         /// </summary>
-        virtual void Update() = 0;
+        virtual SceneCmd Update() = 0;
 
         /// <summary>
         /// 描画処理
@@ -53,12 +55,6 @@ export namespace scene
         /// 終了処理
         /// </summary>
         virtual void Finalize() = 0;
-
-        /// <summary>
-        /// 次のシーンを取得
-        /// </summary>
-        /// <returns>次のシーン</returns>
-        virtual SceneType GetNextScene() const = 0;
 
         /// <summary>
         /// シーン名を取得

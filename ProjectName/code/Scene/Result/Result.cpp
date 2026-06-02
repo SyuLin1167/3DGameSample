@@ -2,6 +2,7 @@ module;
 #include <DxLib.h>
 
 module Scene.Result;
+import Scene.Title;
 
 namespace scene
 {
@@ -9,7 +10,6 @@ namespace scene
     /// コンストラクタ
     /// </summary>
     Result::Result()
-        : m_nextScene(SceneType::None)
     {
     }
 
@@ -23,13 +23,15 @@ namespace scene
     /// <summary>
     /// 更新処理
     /// </summary>
-    void Result::Update()
+    SceneCmd Result::Update()
     {
         // スペースキーが押されたらタイトルシーンへ
         if (CheckHitKey(KEY_INPUT_SPACE))
         {
-            m_nextScene = SceneType::Title;
+            return CmdReplace{ [] { return std::make_shared<Title>(); } };
         }
+
+        return std::monostate{};
     }
 
     /// <summary>
