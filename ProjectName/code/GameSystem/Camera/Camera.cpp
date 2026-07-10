@@ -16,11 +16,36 @@ namespace gameSystem
     }
 
     /// <summary>
+    /// 初期化処理
+    /// </summary>
+    void Camera::Initialize()
+    {
+        // カメラの描画範囲
+        SetCameraNearFar(0.1f, 1000.0f);
+
+        // 3D描画用のZバッファを有効化
+        SetUseZBuffer3D(TRUE);
+        SetWriteZBuffer3D(TRUE);
+
+        Apply();
+    }
+
+    /// <summary>
     /// 更新処理
     /// </summary>
     void Camera::Update()
     {
-        // カメラの設定
-        SetCameraPositionAndTarget_UpVecY(m_position, m_target);
+
+    }
+
+    /// <summary>
+    /// カメラ設定をDxLibへ反映
+    /// </summary>
+    void Camera::Apply() const
+    {
+        SetCameraPositionAndTarget_UpVecY(
+            m_position,
+            m_target
+        );
     }
 }

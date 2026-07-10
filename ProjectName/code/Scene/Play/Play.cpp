@@ -30,6 +30,9 @@ namespace scene
     /// </summary>
     void Play::Initialize()
     {
+        // カメラの初期化
+        m_camera->Initialize();
+
         // オブジェクトの初期化
         m_objectManager->Initialize();
     }
@@ -59,6 +62,9 @@ namespace scene
     /// </summary>
     void Play::Draw()
     {
+        // カメラ反映
+        m_camera->Apply();
+
         // オブジェクトの描画
         m_objectManager->Draw();
 
