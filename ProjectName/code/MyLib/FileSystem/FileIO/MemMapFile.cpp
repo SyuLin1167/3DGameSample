@@ -1,4 +1,4 @@
-﻿module;
+module;
 #include <Windows.h>
 
 module MyLib.File.MemMapFile;

@@ -187,4 +187,7 @@
       <UniqueIdentifier>{5dcac688-e9ad-41b0-a5c4-c71d9ad4ceea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Directory.Build.props" />
+  </ItemGroup>
 </Project>
