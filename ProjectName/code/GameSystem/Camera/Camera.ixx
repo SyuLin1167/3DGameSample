@@ -25,9 +25,19 @@ export namespace gameSystem
         ~Camera() = default;
 
         /// <summary>
+        /// 初期化処理
+        /// </summary>
+        void Initialize();
+
+        /// <summary>
         /// 更新処理
         /// </summary>
         void Update();
+
+        /// <summary>
+        /// カメラ設定をDxLibへ反映
+        /// </summary>
+        void Apply() const;
 
         /// <summary>
         /// カメラ位置を設定
