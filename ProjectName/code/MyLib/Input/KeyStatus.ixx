@@ -1,4 +1,4 @@
-﻿export module MyLib.KeyStatus;
+export module MyLib.KeyStatus;
 
 import <unordered_map>;
 

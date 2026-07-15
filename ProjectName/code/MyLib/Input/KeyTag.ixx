@@ -1,4 +1,4 @@
-﻿module;
+module;
 #include <DxLib.h>
 
 export module MyLib.KeyStatus.KeyTag;
