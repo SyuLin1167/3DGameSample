@@ -3,6 +3,10 @@ module;
 
 module Object.Player;
 
+import MyLib.KeyStatus;
+
+using KeyHelper = ::input::KeyStatus;
+
 namespace object
 {
     /// <summary>
@@ -51,20 +55,22 @@ namespace object
     {
         VECTOR input = VGet(0.0f, 0.0f, 0.0f);
 
+        constexpr int MOVE_KEY_STATE = ON_PRESS | PRESSING;
+
         // 矢印キーで移動
-        if (CheckHitKey(KEY_INPUT_UP))
+        if (KeyHelper::CheckKey(keyType.UP, MOVE_KEY_STATE))
         {
             input.z += 1.0f;
         }
-        if (CheckHitKey(KEY_INPUT_DOWN))
+        if (KeyHelper::CheckKey(keyType.DOWN, MOVE_KEY_STATE))
         {
             input.z -= 1.0f;
         }
-        if (CheckHitKey(KEY_INPUT_LEFT))
+        if (KeyHelper::CheckKey(keyType.LEFT, MOVE_KEY_STATE))
         {
             input.x -= 1.0f;
         }
-        if (CheckHitKey(KEY_INPUT_RIGHT))
+        if (KeyHelper::CheckKey(keyType.RIGHT, MOVE_KEY_STATE))
         {
             input.x += 1.0f;
         }
